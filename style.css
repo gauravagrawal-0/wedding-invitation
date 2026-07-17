@@ -1,0 +1,705 @@
+/* ============================================================
+   MEHER & KABIR — WEDDING INVITATION
+   Design tokens by @gauravagrawal
+   ============================================================ */
+:root{
+  --ivory: #FBF6EC;
+  --ivory-2: #F3EBDA;
+  --night: #241536;
+  --night-2: #341C4A;
+  --marigold: #E8A33D;
+  --marigold-light: #F4C77A;
+  --henna: #8B3A3A;
+  --turmeric: #D9A404;
+  --leaf: #516B4A;
+  --ink: #2B2233;
+  --ink-soft: #6B5F73;
+
+  --font-display: 'Marcellus', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-utility: 'Mukta', sans-serif;
+
+  --space-1: clamp(0.5rem, 1vw, 0.75rem);
+  --space-2: clamp(1rem, 2vw, 1.5rem);
+  --space-3: clamp(1.75rem, 4vw, 3rem);
+  --space-4: clamp(3rem, 7vw, 6rem);
+
+  --max-w: 640px;
+}
+
+*{ box-sizing: border-box; }
+html{
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+body{
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg{ max-width: 100%; display: block; }
+
+a{ color: inherit; }
+
+:focus-visible{
+  outline: 2px solid var(--henna);
+  outline-offset: 3px;
+}
+
+button, input, textarea, select{ font-family: inherit; }
+
+/* ============================================================
+   ENTRY GATE by @gauravagrawal
+   ============================================================ */
+.gate{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  background: radial-gradient(120% 100% at 50% 0%, var(--night-2) 0%, var(--night) 60%);
+  color: var(--ivory);
+  text-align: center;
+  padding: var(--space-2);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.gate.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.gate__glow{
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(232,163,61,0.18), transparent 60%);
+  pointer-events: none;
+}
+.gate__ganesh{
+  width: 44px;
+  height: 44px;
+  color: var(--marigold);
+  margin-bottom: 0.3em;
+}
+
+.home__ganesh{
+  width: 120px;
+  height: 120px;
+  color: var(--marigold);
+  margin-bottom: 0.3em;
+}
+.gate__mantra{
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--marigold-light);
+  margin: 0 0 var(--space-2);
+}
+
+.home__mantra{
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--marigold-light);
+  margin: 0 0 var(--space-2);
+  
+}
+.gate__flower{
+  width: 56px;
+  height: 56px;
+  color: var(--marigold);
+  margin-bottom: var(--space-1);
+}
+.gate__eyebrow{
+  font-family: var(--font-utility);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--marigold-light);
+  margin: 0;
+}
+.gate__names{
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 10vw, 3.6rem);
+  margin: 0.2em 0;
+  font-weight: 400;
+}
+.gate__amp{
+  color: var(--marigold);
+  font-style: italic;
+  padding: 0 0.2em;
+}
+.gate__date{
+  font-family: var(--font-utility);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--ivory-2);
+  margin: 0 0 var(--space-2);
+}
+.gate__btn{
+  font-family: var(--font-utility);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  background: transparent;
+  border: 1px solid var(--marigold);
+  color: var(--marigold-light);
+  padding: 0.9em 2em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 44px;
+}
+.gate__btn:hover, .gate__btn:focus-visible{
+  background: var(--marigold);
+  color: var(--night);
+}
+
+/* ============================================================
+   LAYOUT / SECTIONS by @gauravagrawal
+   ============================================================ */
+main{ position: relative; z-index: 1; }
+
+section, header.hero{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-2);
+  position: relative;
+}
+
+.section__eyebrow{
+  font-family: var(--font-utility);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--henna);
+  text-align: center;
+  margin: 0 0 0.5em;
+}
+.section__title{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  text-align: center;
+  margin: 0 0 var(--space-3);
+  color: var(--night);
+}
+
+/* ============================================================
+   HERO by @gauravagrawal
+   ============================================================ */
+.hero{
+  text-align: center;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-3);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero__eyebrow{
+  font-family: var(--font-utility);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--henna);
+  margin: 0 0 var(--space-1);
+}
+.hero__names{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 14vw, 5.5rem);
+  line-height: 1;
+  color: var(--night);
+  margin: 0 0 var(--space-1);
+}
+.hero__amp{
+  display: block;
+  font-style: italic;
+  color: var(--marigold);
+  font-size: 0.5em;
+  margin: 0.15em 0;
+}
+.hero__invite{
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 30ch;
+  margin: 0 auto var(--space-3);
+}
+
+.hero__countdown{
+  display: flex;
+  gap: clamp(0.75rem, 3vw, 1.5rem);
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+.cd{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.4rem;
+}
+.cd__num{
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  color: var(--henna);
+  line-height: 1;
+}
+.cd__label{
+  font-family: var(--font-utility);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 0.35em;
+}
+
+.hero__scroll{
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--marigold);
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+.hero__scroll span{
+  width: 4px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--marigold);
+  animation: scrollDot 1.6s ease infinite;
+}
+@keyframes scrollDot{
+  0%{ transform: translateY(0); opacity: 1; }
+  70%{ transform: translateY(10px); opacity: 0; }
+  100%{ transform: translateY(0); opacity: 0; }
+}
+
+/* ============================================================
+   STORY by @gauravagrawal
+   ============================================================ */
+.story__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.story__item{
+  background: var(--ivory-2);
+  border-radius: 18px;
+  padding: var(--space-2);
+  position: relative;
+}
+.story__year{
+  font-family: var(--font-utility);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--marigold);
+  background: var(--night);
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 0.6em;
+}
+.story__item h3{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin: 0 0 0.3em;
+  color: var(--night);
+}
+.story__item p{
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   EVENTS (garland-strung timeline) by @gauravagrawal
+   ============================================================ */
+.events__list{
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+}
+/* garland thread connecting the ceremony beads, signature element  */
+.events__list::before{
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--turmeric) 0%,
+    var(--leaf) 33%,
+    var(--henna) 66%,
+    var(--night) 100%
+  );
+  border-radius: 999px;
+  z-index: 1;
+}
+.event{
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  position: relative;
+}
+.event__bead{
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ivory);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 6px var(--ivory);
+}
+.event--haldi .event__bead{ background: var(--turmeric); }
+.event--mehndi .event__bead{ background: var(--leaf); }
+.event--wedding .event__bead{ background: var(--henna); }
+.event--reception .event__bead{ background: var(--night); }
+.event__bead svg{ width: 26px; height: 26px; }
+
+.event__card{
+  flex: 1 1 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: var(--space-2);
+  box-shadow: 0 8px 24px -14px rgba(43,34,51,0.25);
+}
+.event__name{
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0 0 0.15em;
+  color: var(--night);
+}
+.event__when{
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: var(--henna);
+  margin: 0 0 0.1em;
+  font-weight: 500;
+}
+.event__where{
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.5em;
+}
+.event__note{
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   GALLERY by @gauravagrawal
+   ============================================================ */
+.gallery__hint{
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: -1.5rem 0 var(--space-3);
+}
+.gallery__grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+.gallery__tile{
+  margin: 0;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 1.5px dashed;
+}
+.gallery__tile svg{ width: 40%; height: 40%; }
+.gallery__tile figcaption{
+  font-family: var(--font-utility);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.gallery__tile--1{ background: #FBF0DD; border-color: var(--turmeric); color: var(--turmeric); }
+.gallery__tile--2{ background: #EDF1E8; border-color: var(--leaf); color: var(--leaf); }
+.gallery__tile--3{ background: #F6E9E9; border-color: var(--henna); color: var(--henna); }
+.gallery__tile--4{ background: #EFE9F3; border-color: var(--night-2); color: var(--night-2); }
+
+/* ============================================================
+   VENUE by @gauravagrawal
+   ============================================================ */
+.venue__address{
+  text-align: center;
+  color: var(--ink-soft);
+  margin-top: -1.5rem;
+  margin-bottom: var(--space-3);
+  font-size: 1.1rem;
+}
+.venue__map{
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-2);
+}
+.venue__map iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.venue__actions{
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+}
+.venue__info{
+  display: grid;
+  gap: var(--space-2);
+}
+.venue__info h3{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: 0 0 0.3em;
+  color: var(--night);
+}
+.venue__info p{
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   BUTTONS by @gauravagrawal
+   ============================================================ */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9em 1.8em;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 44px;
+  border: 1.5px solid var(--night);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:hover, .btn:focus-visible{ transform: translateY(-1px); }
+.btn--outline{
+  background: transparent;
+  color: var(--night);
+}
+.btn--outline:hover{ background: var(--night); color: var(--ivory); }
+.btn--fill{
+  background: var(--henna);
+  border-color: var(--henna);
+  color: var(--ivory);
+  width: 100%;
+}
+.btn--fill:hover{ background: #742f2f; }
+
+/* ============================================================
+   RSVP by @gauravagrawal
+   ============================================================ */
+.rsvp__hint{
+  text-align: center;
+  color: var(--ink-soft);
+  margin-top: -1.5rem;
+  margin-bottom: var(--space-3);
+}
+.rsvp__form{
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--ivory-2);
+  padding: var(--space-3) var(--space-2);
+  border-radius: 20px;
+}
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  font-family: var(--font-utility);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.field input[type="text"],
+.field input[type="number"],
+.field textarea{
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  padding: 0.7em 0.9em;
+  border: 1.5px solid #DDD3C2;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  min-height: 44px;
+}
+.field textarea{ resize: vertical; min-height: 80px; }
+.field--radio{
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.field--radio legend{
+  padding: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2em;
+}
+.field--radio label{
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 1.05rem;
+  font-family: var(--font-body);
+  min-height: 32px;
+}
+.field--radio input{ width: 18px; height: 18px; accent-color: var(--henna); flex: 0 0 auto; }
+
+.rsvp__status{
+  min-height: 1.2em;
+  text-align: center;
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: var(--leaf);
+  margin: 0;
+}
+.rsvp__status.is-error{ color: var(--henna); }
+
+/* ============================================================
+   FOOTER by @gauravagrawal
+   ============================================================ */
+.footer{
+  text-align: center;
+  padding: var(--space-4) var(--space-2) var(--space-3);
+  color: var(--ivory-2);
+  background: var(--night);
+}
+.footer__mark{
+  width: 32px;
+  height: 32px;
+  color: var(--marigold);
+  margin: 0 auto var(--space-1);
+}
+.footer p{ margin: 0.3em 0; font-family: var(--font-utility); font-size: 0.85rem; letter-spacing: 0.04em; }
+.footer__made{ opacity: 0.6; font-size: 0.75rem !important; }
+
+/* ============================================================
+   SCROLL REVEAL by @gauravagrawal
+   ============================================================ */
+.reveal{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SOUND TOGGLE by @gauravagrawal
+   ============================================================ */
+.sound-toggle{
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 45;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--night);
+  background: rgba(251,246,236,0.9);
+  backdrop-filter: blur(4px);
+  color: var(--night);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.sound-toggle:hover, .sound-toggle:focus-visible{ transform: scale(1.06); }
+.sound-toggle svg{ width: 20px; height: 20px; }
+.sound-toggle .icon-sound-off{ display: none; }
+.sound-toggle[aria-pressed="false"] .icon-sound-on{ display: none; }
+.sound-toggle[aria-pressed="false"] .icon-sound-off{ display: block; }
+
+/* ============================================================
+   FALLING PETALS by @gauravagrawal
+   ============================================================ */
+.petals-layer{
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  overflow: hidden;
+  pointer-events: none;
+}
+.petal{
+  position: absolute;
+  top: -8%;
+  will-change: transform;
+  animation: petal-fall linear forwards;
+}
+.petal__shape{
+  animation: petal-sway ease-in-out infinite alternate;
+  transform-origin: center;
+}
+@keyframes petal-fall{
+  from{ transform: translateY(-10vh); }
+  to{ transform: translateY(110vh); }
+}
+@keyframes petal-sway{
+  from{ transform: translateX(-10px) rotate(-18deg); }
+  to{ transform: translateX(10px) rotate(18deg); }
+}
+@media (prefers-reduced-motion: reduce){
+  .petals-layer{ display: none; }
+}
+
+/* ============================================================
+   RESPONSIVE — small phones by @gauravagrawal
+   ============================================================ */
+@media (max-width: 380px){
+  .hero__countdown{ gap: 0.6rem; }
+  .cd{ min-width: 2.8rem; }
+  .gallery__grid{ gap: var(--space-1); }
+}
+
+/* Larger screens: a touch more breathing room, thread stays centered */
+@media (min-width: 900px){
+  section, header.hero{ max-width: 720px; }
+}

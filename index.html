@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Pratibha &amp; Alok — Wedding Invitation</title>
+<meta name="description" content="You're invited to celebrate the wedding of Pratibha &amp; Alok — 11–12 December 2026, Raipur." />
+<meta name="theme-color" content="#241536" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Mukta:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<!-- ENTRY GATE by @gauravagrawal -->
+<div class="gate" id="gate">
+  <div class="gate__glow"></div>
+
+  <svg class="gate__ganesh" viewBox="0 0 80 80" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- crown -->
+      <path d="M40 8c-4 0-7 3-7 6 0 2 1 3 2 4h10c1-1 2-2 2-4 0-3-3-6-7-6Z"/>
+      <circle cx="40" cy="9" r="2" fill="currentColor" stroke="none"/>
+      <!-- head -->
+      <circle cx="40" cy="30" r="13"/>
+      <!-- ears -->
+      <path d="M27 24c-7-2-12 3-11 9 1 5 6 7 10 5"/>
+      <path d="M53 24c7-2 12 3 11 9-1 5-6 7-10 5"/>
+      <!-- trunk -->
+      <path d="M36 38c-1 6-4 9-4 15 0 5 3 8 7 8 3 0 5-2 5-5"/>
+      <!-- tusk -->
+      <path d="M45 35c2 1 3 3 2 5"/>
+      <!-- belly -->
+      <path d="M27 46c-4 3-6 8-4 13 3 6 10 9 17 9s14-3 17-9c2-5 0-10-4-13"/>
+    </g>
+  </svg>
+  <p class="gate__mantra">ॐ गणेशाय नमः</p>
+
+  <svg class="gate__flower" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="50" cy="50" r="6" fill="currentColor" stroke="none"/>
+      <g id="petals"></g>
+    </g>
+  </svg>
+  <p class="gate__eyebrow">The wedding of</p>
+  <h1 class="gate__names">Pratibha <span class="gate__amp">&amp;</span> Alok</h1>
+  <p class="gate__date">9 – 10 December 2026 · Raipur</p>
+  <button class="gate__btn" id="gateBtn" type="button">Open Invitation</button>
+</div>
+
+<main id="main" hidden>
+
+  <audio id="bgAudio" src="assets/bg-music.mp3" loop preload="auto"></audio>
+
+  <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="Mute background music">
+    <svg class="icon-sound-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 5V4L8 9H4Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M16.5 8.5c1.6 1.9 1.6 5.1 0 7M19 6c2.8 3.1 2.8 8.9 0 12"/></svg>
+    <svg class="icon-sound-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 5V4L8 9H4Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M16 9l5 6M21 9l-5 6"/></svg>
+  </button>
+
+  <div class="petals-layer" id="petalsLayer" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+      <svg class="home__ganesh" viewBox="0 0 80 80" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- crown -->
+      <path d="M40 8c-4 0-7 3-7 6 0 2 1 3 2 4h10c1-1 2-2 2-4 0-3-3-6-7-6Z"/>
+      <circle cx="40" cy="9" r="2" fill="currentColor" stroke="none"/>
+      <!-- head -->
+      <circle cx="40" cy="30" r="13"/>
+      <!-- ears -->
+      <path d="M27 24c-7-2-12 3-11 9 1 5 6 7 10 5"/>
+      <path d="M53 24c7-2 12 3 11 9-1 5-6 7-10 5"/>
+      <!-- trunk -->
+      <path d="M36 38c-1 6-4 9-4 15 0 5 3 8 7 8 3 0 5-2 5-5"/>
+      <!-- tusk -->
+      <path d="M45 35c2 1 3 3 2 5"/>
+      <!-- belly -->
+      <path d="M27 46c-4 3-6 8-4 13 3 6 10 9 17 9s14-3 17-9c2-5 0-10-4-13"/>
+    </g>
+  </svg>
+  <p class="home__mantra">ॐ गणेशाय नमः</p>
+    <p class="hero__eyebrow">Together with their families</p>
+    <h1 class="hero__names">Pratibha<span class="hero__amp">&amp;</span>Alok</h1>
+    <p class="hero__invite">joyfully invite you to celebrate their wedding</p>
+
+    <div class="hero__countdown" id="countdown" aria-live="polite">
+      <div class="cd"><span class="cd__num" id="cd-days">00</span><span class="cd__label">days</span></div>
+      <div class="cd"><span class="cd__num" id="cd-hours">00</span><span class="cd__label">hrs</span></div>
+      <div class="cd"><span class="cd__num" id="cd-mins">00</span><span class="cd__label">min</span></div>
+      <div class="cd"><span class="cd__num" id="cd-secs">00</span><span class="cd__label">sec</span></div>
+    </div>
+
+    <a class="hero__scroll" href="#story" aria-label="Scroll to our story">
+      <span></span>
+    </a>
+  </header>
+
+  <!-- OUR STORY by @gauravagrawal -->
+  <section class="story" id="story">
+    <p class="section__eyebrow">Our Story</p>
+    <h2 class="section__title">How it began</h2>
+
+    <ol class="story__list">
+      <li class="story__item">
+        <span class="story__year">April 2026</span>
+        <h3>The first hello</h3>
+        <p>A mutual friend's rooftop dinner, one shared plate of pani puri, and a conversation that went on far too long. Neither of us wanted to leave first.</p>
+      </li>
+      <li class="story__item">
+        <span class="story__year">May 2026</span>
+        <h3>The proposal</h3>
+        <p>On a monsoon evening in Raipur, with the rain just easing, Alok asked and Pratibha said yes before he finished the sentence.</p>
+      </li>
+      <li class="story__item">
+        <span class="story__year">2026</span>
+        <h3>The wedding</h3>
+        <p>Two families, four days of celebration, and one very long guest list. We can't wait to have you with us.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- EVENTS by @gauravagrawal -->
+  <section class="events" id="events">
+    <p class="section__eyebrow">The Celebrations</p>
+    <h2 class="section__title">Four days, one family</h2>
+
+    <div class="events__list">
+
+      <article class="event event--haldi" style="--i:0">
+        <div class="event__bead">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="10" fill="currentColor"/><g stroke="currentColor" stroke-width="2" fill="none"><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M11 37l4-4M33 15l4-4"/></g></svg>
+        </div>
+        <div class="event__card">
+          <p class="event__name">Haldi</p>
+          <p class="event__when">Friday, 11 December · 10:00 AM</p>
+          <p class="event__where">Family Lawn, The Lalit Mahal, Raipur</p>
+          <p class="event__note">Wear yellow — things are about to get messy (in the best way).</p>
+        </div>
+      </article>
+
+      <article class="event event--mehndi" style="--i:1">
+        <div class="event__bead">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M24 6c6 6 6 12 0 18-6-6-6-12 0-18Z"/><path stroke="currentColor" stroke-width="2" fill="none" d="M24 24c0 8-6 14-14 14M24 24c0 8 6 14 14 14"/></svg>
+        </div>
+        <div class="event__card">
+          <p class="event__name">Mehndi</p>
+          <p class="event__when">Friday, 11 December · 5:00 PM</p>
+          <p class="event__where">Courtyard, The Lalit Mahal, Raipur</p>
+          <p class="event__note">Live dhol, henna artists on site, and dancing till the light fades.</p>
+        </div>
+      </article>
+
+      <article class="event event--wedding" style="--i:2">
+        <div class="event__bead">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path stroke="currentColor" stroke-width="2" fill="none" d="M10 40V20l14-12 14 12v20M10 40h28M18 40V26h12v14"/></svg>
+        </div>
+        <div class="event__card">
+          <p class="event__name">Wedding Ceremony</p>
+          <p class="event__when">Saturday, 12 December · 6:00 PM</p>
+          <p class="event__where">Mandap Lawn, The Lalit Mahal, Raipur</p>
+          <p class="event__note">Traditional rites under an open sky, followed by the pheras at sunset.</p>
+        </div>
+      </article>
+
+      <article class="event event--reception" style="--i:3">
+        <div class="event__bead">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path stroke="currentColor" stroke-width="2" fill="none" d="M14 8l6 8-6 8M34 8l-6 8 6 8M10 40h28"/><circle cx="24" cy="16" r="3" fill="currentColor"/></svg>
+        </div>
+        <div class="event__card">
+          <p class="event__name">Reception</p>
+          <p class="event__when">Saturday, 12 December · 8:30 PM</p>
+          <p class="event__where">Grand Ballroom, The Lalit Mahal, Raipur</p>
+          <p class="event__note">Dinner, toasts, and the after-party. Formal Indian or western attire.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- GALLERY (illustrated, no photos) by @gauravagrawal -->
+  <section class="gallery" id="gallery">
+    <p class="section__eyebrow">Little Things We Love</p>
+    <h2 class="section__title">Moments &amp; motifs</h2>
+    <p class="gallery__hint">Swap these placeholder tiles for your own photos anytime.</p>
+
+    <div class="gallery__grid">
+      <figure class="gallery__tile gallery__tile--1">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="34" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M60 26c8 8 8 16 0 24-8-8-8-16 0-24Z"/></svg>
+        <figcaption>Add photo</figcaption>
+      </figure>
+      <figure class="gallery__tile gallery__tile--2">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><path stroke="currentColor" stroke-width="2" fill="none" d="M60 20c20 10 30 30 20 50-10-5-15-15-15-25 0 10-5 20-15 25-10-20 0-40 10-50Z"/></svg>
+        <figcaption>Add photo</figcaption>
+      </figure>
+      <figure class="gallery__tile gallery__tile--3">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="60" cy="60" r="16"/><circle cx="60" cy="60" r="28"/><circle cx="60" cy="60" r="40"/></g></svg>
+        <figcaption>Add photo</figcaption>
+      </figure>
+      <figure class="gallery__tile gallery__tile--4">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><path stroke="currentColor" stroke-width="2" fill="none" d="M30 80c10-30 20-40 30-50 10 10 20 20 30 50-10-8-20-12-30-12s-20 4-30 12Z"/></svg>
+        <figcaption>Add photo</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VENUE by @gauravagrawal -->
+  <section class="venue" id="venue">
+    <p class="section__eyebrow">Getting There</p>
+    <h2 class="section__title">The Lalit Mahal, Raipur</h2>
+    <p class="venue__address">Amapara, GE Road, Raipur, Chhattisgarh 492001</p>
+
+    <div class="venue__map">
+      <iframe
+        title="Venue map"
+        src="https://maps.google.com/maps?q=The%20Lalit%20Mahal%2C%20Raipur%2C%20Chhattisgarh&t=&z=14&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="venue__actions">
+      <a class="btn btn--outline" href="https://maps.google.com/?q=The+Lalit+Mahal,Raipur,Chhattisgarh" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+
+    <div class="venue__info">
+      <div>
+        <h3>Stay</h3>
+        <p>A block of rooms is held at The Lalit Mahal and nearby Radisson Blu Raipur for out-of-town guests. Mention "Pratibha &amp; Alok Wedding" when booking.</p>
+      </div>
+      <div>
+        <h3>Travel</h3>
+        <p>Closest by air via Swami Vivekananda Airport, Raipur (25 min from the venue), or by road via NH30/NH53 if driving in from nearby cities. Shuttle service available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP by @gauravagrawal -->
+  <section class="rsvp" id="rsvp">
+    <p class="section__eyebrow">Join Us</p>
+    <h2 class="section__title">RSVP</h2>
+    <p class="rsvp__hint">Kindly respond by 1 November 2026.</p>
+
+    <form class="rsvp__form" id="rsvpForm" novalidate>
+      <label class="field">
+        <span>Full name</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Your name">
+      </label>
+
+      <fieldset class="field field--radio">
+        <legend>Will you attend?</legend>
+        <label><input type="radio" name="attending" value="Joyfully accepts" checked> Joyfully accepts</label>
+        <label><input type="radio" name="attending" value="Regretfully declines"> Regretfully declines</label>
+      </fieldset>
+
+      <label class="field">
+        <span>Number of guests</span>
+        <input type="number" name="guests" min="1" max="10" value="1" inputmode="numeric">
+      </label>
+
+      <fieldset class="field field--radio">
+        <legend>Which events?</legend>
+        <label><input type="checkbox" name="events" value="Haldi" checked> Haldi</label>
+        <label><input type="checkbox" name="events" value="Mehndi" checked> Mehndi</label>
+        <label><input type="checkbox" name="events" value="Wedding" checked> Wedding Ceremony</label>
+        <label><input type="checkbox" name="events" value="Reception" checked> Reception</label>
+      </fieldset>
+
+      <label class="field">
+        <span>Note for the couple (optional)</span>
+        <textarea name="message" rows="3" placeholder="Anything you'd like us to know"></textarea>
+      </label>
+
+      <button class="btn btn--fill" type="submit">Send RSVP on WhatsApp</button>
+      <p class="rsvp__status" id="rsvpStatus" role="status"></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <svg class="footer__mark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="6" fill="currentColor"/><g id="footerPetals"></g></svg>
+    <p>Pratibha &amp; Alok · 9 December 2026</p>
+    <p class="footer__made">With love, from both our families</p>
+    <p class="footer__made">Made with ❤️ by @gauravagrawal</p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
