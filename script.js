@@ -7,13 +7,13 @@
   var CONFIG = {
     coupleNames: "Pratibha Jha & Shreenath Alok",
     // ISO date/time the countdown counts down to
-    weddingDateTime: "2026-12-09T10:00:00+05:30",
-    // WhatsApp number to receive RSVPs, country code + number, no spaces or +
-    whatsappNumber: "918871922851",
+    weddingDateTime: "2026-12-09T19:15:00+05:30",
+    // Google Apps Script Web App URL that appends RSVPs to a Google Sheet
+    sheetsUrl: "https://script.google.com/macros/s/AKfycbwmCXYZGWlNq23qUTsl-x1qNqrMaPiLU9SnvYP6tDQ9pUVA1CDQkHLPhUQRZcRW7Qc8/exec",
   };
 
   /* ============================================================
-     ENTRY GATE by @gauravagrawal
+     ENTRY GATE by @gauravagrawal pratibha-alok-wedding-invitation
      ============================================================ */
   var gate = document.getElementById("gate");
   var gateBtn = document.getElementById("gateBtn");
@@ -249,7 +249,7 @@
   drawPetals("footerPetals", 8, 26);
 
   /* ============================================================
-     RSVP → WHATSAPP by @gauravagrawal
+     RSVP → GOOGLE SHEETS
      ============================================================ */
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpStatus = document.getElementById("rsvpStatus");
@@ -276,20 +276,33 @@
         return cb.value;
       });
 
-      var lines = [
-        "RSVP for " + CONFIG.coupleNames + "'s wedding",
-        "Name: " + name,
-        "Attending: " + attending,
-        "Guests: " + guests,
-        "Events: " + (events.length ? events.join(", ") : "None selected"),
-      ];
-      if (message) lines.push("Note: " + message);
+      var submitBtn = rsvpForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      rsvpStatus.textContent = "Sending your RSVP…";
 
-      var text = encodeURIComponent(lines.join("\n"));
-      var url = "https://wa.me/" + CONFIG.whatsappNumber + "?text=" + text;
-
-      rsvpStatus.textContent = "Opening WhatsApp to send your RSVP…";
-      window.open(url, "_blank", "noopener");
+      fetch(CONFIG.sheetsUrl, {
+        method: "POST",
+        mode: "no-cors", // Apps Script web apps don't return CORS headers
+        headers: { "Content-Type": "text/plain" }, // avoids CORS preflight
+        body: JSON.stringify({
+          name: name,
+          attending: attending,
+          guests: guests,
+          events: events.length ? events.join(", ") : "None selected",
+          message: message,
+        }),
+      })
+        .then(function () {
+          rsvpStatus.textContent = "Thank you! Your RSVP has been received.";
+          rsvpForm.reset();
+        })
+        .catch(function () {
+          rsvpStatus.textContent = "Something went wrong. Please try again.";
+          rsvpStatus.classList.add("is-error");
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 })();
