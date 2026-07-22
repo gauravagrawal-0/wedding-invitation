@@ -30,6 +30,8 @@
 *{ box-sizing: border-box; }
 html{
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
@@ -73,6 +75,7 @@ button, input, textarea, select{ font-family: inherit; }
   text-align: center;
   padding: var(--space-2);
   transition: opacity 0.8s ease, visibility 0.8s ease;
+  overflow-y: auto;
 }
 .gate.is-hidden{
   opacity: 0;
@@ -130,9 +133,14 @@ button, input, textarea, select{ font-family: inherit; }
 }
 .gate__names{
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 10vw, 3.6rem);
+  font-size: clamp(1.7rem, 8vw, 2.9rem);
+  line-height: 1.2;
   margin: 0.2em 0;
   font-weight: 400;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 90vw;
 }
 .gate__amp{
   color: var(--marigold);
@@ -203,6 +211,7 @@ section, header.hero{
   padding-top: var(--space-4);
   padding-bottom: var(--space-3);
   min-height: 90vh;
+  min-height: 90svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,10 +228,13 @@ section, header.hero{
 .hero__names{
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(3rem, 14vw, 5.5rem);
-  line-height: 1;
+  font-size: clamp(2.1rem, 10vw, 4.6rem);
+  line-height: 1.05;
   color: var(--night);
   margin: 0 0 var(--space-1);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 .hero__amp{
   display: block;
@@ -361,6 +373,7 @@ section, header.hero{
   align-items: flex-start;
   gap: var(--space-2);
   position: relative;
+  min-width: 0;
 }
 .event__bead{
   flex: 0 0 auto;
@@ -383,6 +396,7 @@ section, header.hero{
 
 .event__card{
   flex: 1 1 auto;
+  min-width: 0;
   background: #fff;
   border-radius: 16px;
   padding: var(--space-2);
@@ -406,6 +420,7 @@ section, header.hero{
   font-size: 0.85rem;
   color: var(--ink-soft);
   margin: 0 0 0.5em;
+  overflow-wrap: break-word;
 }
 .event__note{
   margin: 0;
@@ -423,33 +438,75 @@ section, header.hero{
   font-size: 0.95rem;
   margin: -1.5rem 0 var(--space-3);
 }
+
+/* Pinboard masonry — photos pinned like keepsakes, each pin borrowing
+   its colour from the matching ceremony bead (turmeric/leaf/henna/night)
+   so the gallery visually rhymes with the Celebrations garland above it. */
 .gallery__grid{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-2);
+  column-count: 2;
+  column-gap: var(--space-2);
+  max-width: 420px;
+  margin: 0 auto;
 }
 .gallery__tile{
-  margin: 0;
-  aspect-ratio: 1;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border: 1.5px dashed;
+  position: relative;
+  display: block;
+  break-inside: avoid;
+  margin: 0 0 var(--space-3);
+  background: #fff;
+  padding: 0.4rem 0.4rem 0.55rem;
+  border-radius: 3px;
+  box-shadow:
+    0 14px 26px -16px rgba(43, 34, 51, 0.45),
+    0 3px 8px -3px rgba(43, 34, 51, 0.2);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  cursor: default;
 }
-.gallery__tile svg{ width: 40%; height: 40%; }
-.gallery__tile figcaption{
-  font-family: var(--font-utility);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.gallery__tile:hover,
+.gallery__tile:focus-visible{
+  transform: rotate(0deg) translateY(-6px) scale(1.035);
+  box-shadow:
+    0 24px 38px -18px rgba(43, 34, 51, 0.55),
+    0 6px 14px -4px rgba(43, 34, 51, 0.25);
+  z-index: 3;
+  outline: none;
 }
-.gallery__tile--1{ background: #FBF0DD; border-color: var(--turmeric); color: var(--turmeric); }
-.gallery__tile--2{ background: #EDF1E8; border-color: var(--leaf); color: var(--leaf); }
-.gallery__tile--3{ background: #F6E9E9; border-color: var(--henna); color: var(--henna); }
-.gallery__tile--4{ background: #EFE9F3; border-color: var(--night-2); color: var(--night-2); }
+.gallery__tile img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+}
+.gallery__pin{
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translateX(-50%) rotate(var(--pin-tilt, -8deg));
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+.gallery__pin svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(43, 34, 51, 0.4));
+}
+.gallery__tile:hover .gallery__pin,
+.gallery__tile:focus-visible .gallery__pin{
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.gallery__tile--1{ --tilt: -3.5deg; --pin-tilt: -10deg; color: var(--turmeric); }
+.gallery__tile--2{ --tilt: 3deg; --pin-tilt: 8deg; color: var(--leaf); }
+.gallery__tile--3{ --tilt: -2.5deg; --pin-tilt: -6deg; color: var(--henna); }
+.gallery__tile--4{ --tilt: 3.5deg; --pin-tilt: 9deg; color: var(--night-2); }
+
+@media (max-width: 420px){
+  .gallery__grid{ column-count: 1; max-width: 260px; }
+}
 
 /* ============================================================
    VENUE by @gauravagrawal
@@ -460,6 +517,8 @@ section, header.hero{
   margin-top: -1.5rem;
   margin-bottom: var(--space-3);
   font-size: 1.1rem;
+  overflow-wrap: break-word;
+  padding: 0 0.5rem;
 }
 .venue__map{
   border-radius: 16px;
@@ -694,9 +753,27 @@ section, header.hero{
    RESPONSIVE — small phones by @gauravagrawal
    ============================================================ */
 @media (max-width: 380px){
-  .hero__countdown{ gap: 0.6rem; }
-  .cd{ min-width: 2.8rem; }
-  .gallery__grid{ gap: var(--space-1); }
+  .hero__countdown{ gap: 0.5rem; }
+  .cd{ min-width: 2.6rem; }
+  .gallery__grid{ column-gap: var(--space-1); max-width: 220px; }
+  .event__bead{ width: 40px; height: 40px; }
+  .event__bead svg{ width: 22px; height: 22px; }
+  .events__list::before{ left: 19px; }
+}
+
+/* Very small / narrow phones (older iPhone SE, small Android) */
+@media (max-width: 340px){
+  .hero__names{ font-size: clamp(1.9rem, 11vw, 2.6rem); }
+  .gate__names{ font-size: clamp(1.5rem, 9vw, 2.2rem); }
+  .hero__countdown{ gap: 0.4rem; }
+  .cd{ min-width: 2.2rem; }
+  .cd__num{ font-size: 1.4rem; }
+}
+
+/* Landscape phones — shrink the fixed-height gate/hero so content isn't cut off */
+@media (max-height: 480px) and (orientation: landscape){
+  .gate{ position: absolute; min-height: 100%; padding: var(--space-3) var(--space-2); }
+  .hero{ min-height: auto; padding-top: var(--space-3); }
 }
 
 /* Larger screens: a touch more breathing room, thread stays centered */

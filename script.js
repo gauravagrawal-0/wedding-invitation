@@ -5,9 +5,9 @@
      CONFIG — edit these to make the invite yours by @gauravagrawal
      ============================================================ */
   var CONFIG = {
-    coupleNames: "Pratibha & Alok",
+    coupleNames: "Pratibha Jha & Shreenath Alok",
     // ISO date/time the countdown counts down to
-    weddingDateTime: "2026-12-09T18:00:00+05:30",
+    weddingDateTime: "2026-12-08T10:00:00+05:30",
     // WhatsApp number to receive RSVPs, country code + number, no spaces or +
     whatsappNumber: "918871922851",
   };
