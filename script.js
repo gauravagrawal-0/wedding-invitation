@@ -5,15 +5,13 @@
      CONFIG — edit these to make the invite yours by @gauravagrawal
      ============================================================ */
   var CONFIG = {
-    coupleNames: "Pratibha Jha & Shreenath Alok",
+    coupleNames: "Pratibha & Alok",
     // ISO date/time the countdown counts down to
     weddingDateTime: "2026-12-09T19:15:00+05:30",
-    // Google Apps Script Web App URL that appends RSVPs to a Google Sheet
-    sheetsUrl: "https://script.google.com/macros/s/AKfycbwmCXYZGWlNq23qUTsl-x1qNqrMaPiLU9SnvYP6tDQ9pUVA1CDQkHLPhUQRZcRW7Qc8/exec",
   };
 
   /* ============================================================
-     ENTRY GATE by @gauravagrawal pratibha-alok-wedding-invitation
+     ENTRY GATE by @gauravagrawal
      ============================================================ */
   var gate = document.getElementById("gate");
   var gateBtn = document.getElementById("gateBtn");
@@ -43,7 +41,7 @@
   }
 
   /* ============================================================
-     BACKGROUND AUDIO by @gauravagrawal
+     BACKGROUND AUDIO by @gauravagrawal  pratibha-alok-wedding-invitation
      ============================================================ */
   var bgAudio = document.getElementById("bgAudio");
   var soundToggle = document.getElementById("soundToggle");
@@ -190,7 +188,7 @@
      ============================================================ */
   function initReveal() {
     var targets = document.querySelectorAll(
-      ".story__item, .event, .gallery__tile, .venue__map, .venue__info > div, .rsvp__form"
+      ".story__item, .event, .gallery__tile, .venue__map, .venue__info > div, .blessing"
     );
     targets.forEach(function (el) {
       el.classList.add("reveal");
@@ -247,62 +245,6 @@
   }
   drawPetals("petals", 8, 34);
   drawPetals("footerPetals", 8, 26);
+  drawPetals("blessingPetals", 12, 42);
 
-  /* ============================================================
-     RSVP → GOOGLE SHEETS
-     ============================================================ */
-  var rsvpForm = document.getElementById("rsvpForm");
-  var rsvpStatus = document.getElementById("rsvpStatus");
-
-  if (rsvpForm) {
-    rsvpForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      var name = rsvpForm.elements["name"].value.trim();
-      if (!name) {
-        rsvpStatus.textContent = "Please enter your name so we know who's coming.";
-        rsvpStatus.classList.add("is-error");
-        rsvpForm.elements["name"].focus();
-        return;
-      }
-      rsvpStatus.classList.remove("is-error");
-
-      var attending = rsvpForm.elements["attending"].value;
-      var guests = rsvpForm.elements["guests"].value || "1";
-      var message = rsvpForm.elements["message"].value.trim();
-
-      var eventBoxes = rsvpForm.querySelectorAll('input[name="events"]:checked');
-      var events = Array.prototype.map.call(eventBoxes, function (cb) {
-        return cb.value;
-      });
-
-      var submitBtn = rsvpForm.querySelector('button[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
-      rsvpStatus.textContent = "Sending your RSVP…";
-
-      fetch(CONFIG.sheetsUrl, {
-        method: "POST",
-        mode: "no-cors", // Apps Script web apps don't return CORS headers
-        headers: { "Content-Type": "text/plain" }, // avoids CORS preflight
-        body: JSON.stringify({
-          name: name,
-          attending: attending,
-          guests: guests,
-          events: events.length ? events.join(", ") : "None selected",
-          message: message,
-        }),
-      })
-        .then(function () {
-          rsvpStatus.textContent = "Thank you! Your RSVP has been received.";
-          rsvpForm.reset();
-        })
-        .catch(function () {
-          rsvpStatus.textContent = "Something went wrong. Please try again.";
-          rsvpStatus.classList.add("is-error");
-        })
-        .finally(function () {
-          if (submitBtn) submitBtn.disabled = false;
-        });
-    });
-  }
 })();
